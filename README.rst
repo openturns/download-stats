@@ -4,4 +4,4 @@
 Download statistics
 ===================
 
-
+http://openturns.github.io/openturns/stats
