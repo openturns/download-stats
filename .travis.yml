@@ -1,20 +1,13 @@
 language: generic
 sudo: false
 
-addons:
-  apt:
-    packages:
-      - texlive-latex-recommended
-      - texlive-fonts-recommended
-      - texlive-latex-extra
-
 install:
   # conda
   - wget -c --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P /tmp
   - bash /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - conda config --add channels conda-forge
-  - conda install -y pandas matplotlib scikit-learn condastats pip
+  - conda install -y pandas matplotlib-base scikit-learn condastats pip
   - pip install pypistats
 
 script:

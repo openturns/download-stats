@@ -43,9 +43,12 @@ def monthly(d, csvfilename, filename, title, except_last_point=True, degree=4, l
   print(f"    + monthly : {filename}")
   # retrieve the current vals
   vals = dict()
-  with open(csvfilename, newline='') as csvfile:
-    for row in csv.reader(csvfile):
-      vals[row[0]] = row[1]
+  try:
+    with open(csvfilename, newline='') as csvfile:
+      for row in csv.reader(csvfile):
+        vals[row[0]] = row[1]
+  except IOError:
+    print("warning:", csvfilename, "not found")
   # We just take the two lasts ...
   for k, v in d[-2:]['downloads'].items():
     vals[k] = str(v)
