@@ -18,7 +18,7 @@ after_success:
   - git clone https://${GH_TOKEN}@github.com/openturns/openturns.github.io.git
   - REPO_NAME=`echo "${TRAVIS_REPO_SLUG}" | cut -d "/" -f 2`
   - mkdir -p openturns.github.io/openturns/stats
-  - cp -v *.svg openturns.github.io/openturns/stats
+  - cp -v index.html *.svg openturns.github.io/openturns/stats
   - cd openturns.github.io
   - touch .nojekyll
   - git config user.email "support@travis-ci.com"
