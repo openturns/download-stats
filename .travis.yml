@@ -15,7 +15,7 @@ script:
 
 after_success:
   - test "$TRAVIS_PULL_REQUEST" = "false" -a "$TRAVIS_BRANCH" = "master" || exit 0
-  - git clone https://${GH_TOKEN}@github.com/openturns/openturns.github.io.git
+  - git clone --depth 1 https://${GH_TOKEN}@github.com/openturns/openturns.github.io.git
   - REPO_NAME=`echo "${TRAVIS_REPO_SLUG}" | cut -d "/" -f 2`
   - mkdir -p openturns.github.io/openturns/stats
   - cp -v index.html *.svg openturns.github.io/openturns/stats
@@ -29,4 +29,4 @@ after_success:
 
 env:
   global:
-    secure: "exGxIfCYRlG/1NTXn4kLRjySrT5HnaLOj9WxkwaXosaxGzcifcXy41chEXT/P8IoQrveRDtJLMJjSwgWXJUss36Fn4JoD5qBLW5DxE4Y5vCihM7jsmAtfobODyOPEQQPs9ej8y8lJNDU+yO1ibEloO7rDJd+JKnoh9UkcoVbvrTUDK8NMN3O42jWYdt7e8Yi/mMYVeNJoyHndrFdTMtcL5gsQtqNaE8PQctytULtjgoioK+7SG1PQJ4TUg3I9Hb4ke4beAGNxTMpUt/dg1U1igmtdi8gLUJw2KG4xUGlfXrR/+GlYHmw38AMtxv4Rk11tu32cNgeDXzBJAdJfg9Nv8qImCcXhXNLDT//43iid1u/ZSxUVyAYcQ5XmKHO1IgFEULVLTucZI7TlN8AWOP1fyhBJIWNsqQva4V+/yyH6w6tKGZzOb5bl/a4JSdotKmyG7QuqAp5iiHRptt0k0JcemMCXW6IBW3TdYTb2zj3OzaWbjy89cXoldZNdusov4m1Ru3Fvk5djaVHmVo20yEWeUY8IfA6EsbJ2YJOwCyce1W/L+Mdr8l/ra8StzQxQ+vVxtc+jlH71R5WvMyiWRBswXws9uTL1hK3eJhrZHmXcYTFTHlp3y833jTez1MVbRZYcBtMPRxMMLBp2rAFY/1HsEniiuUGtkNcArBBqWtIf9k="
+    secure: "YPDfU9jXywrc/Nj8hY5zlSu24zstMuEHCb3Z+WGBgz64oLD2C1AkFAgwVqod9ULrDaeCN47xAIqvYBMMHwEopaszFGDKNQ2y+i8kNtGEZQRidJWRQVrac+yyOG9ilGVqh7kiT57elByqJqc7jGYKMCBqlhVuJFHo7FHhDjNn5GfkSh5vhMPTCtlhzZ26AKoElwXhPSu0ZpsLoQozZK5oTm9YQe9n/pdRbAg2BPihCOZLMIounGJIRUnhXGSYsVuL3TUQ+ekqyqW6dtZOZKdrJCVsuRYIto47GzNDKtiGPgwRDkEFU8yKG2cHBTTy/JeYdDFBE5jhmeqnQU+3zRrU2BHspyeeC8Vj7SCzOUnln3SV15JYE/7gMoxSd63EynRF2OQiiiPFthWFGbCDnteTEBgR5GbUH/dSnXWg3V3LTANApBi7c0e8Llq7+XNgu2o3dw08GsWecpwJe2FY2dOeFxNNE1O+8cO7QjGHdLHRs6rrhbCl5O/73BNFVchtVrBbb9XOQr7RvVUf64dvJx2W8UWvMctWJ24DBtt2xqydvRduziwg0YBuuciyIJONocbv04408HjV6AdezCHLfUKl3oBXoSqNpLIM3WDxhQiZBJDnDwcPWKWfdXPjylsXSncxn08/JhA9rFGO7jMF//ck9cItvkb1TOxlQvZvieNjGAo="
