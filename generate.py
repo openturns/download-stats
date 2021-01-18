@@ -50,7 +50,7 @@ def monthly(d, csvfilename, filename, title, except_last_point=True, degree=4, l
   except IOError:
     print("warning:", csvfilename, "not found")
   # We just take the two lasts ...
-  for k, v in d[-2:]['downloads'].items():
+  for k, v in d['downloads'].items():
     vals[k] = str(v)
   # write the new current vals
   with open(csvfilename, 'w', newline='') as csvfile:

@@ -11,6 +11,9 @@ install:
   - pip install pypistats
 
 script:
+  - wget https://raw.githubusercontent.com/openturns/openturns.github.io/master/openturns/stats/openturns-conda-monthly.csv
+  - wget https://raw.githubusercontent.com/openturns/openturns.github.io/master/openturns/stats/openturns-pypi-monthly-with.csv
+  - wget https://raw.githubusercontent.com/openturns/openturns.github.io/master/openturns/stats/openturns-pypi-monthly-without.csv
   - python generate.py
 
 after_success:
@@ -18,7 +21,7 @@ after_success:
   - git clone --depth 1 https://${GH_TOKEN}@github.com/openturns/openturns.github.io.git
   - REPO_NAME=`echo "${TRAVIS_REPO_SLUG}" | cut -d "/" -f 2`
   - mkdir -p openturns.github.io/openturns/stats
-  - cp -rv index.html *.svg index_files/ openturns.github.io/openturns/stats
+  - cp -rv index.html *.svg index_files/ *.csv openturns.github.io/openturns/stats
   - cd openturns.github.io
   - touch .nojekyll
   - git config user.email "support@travis-ci.com"
