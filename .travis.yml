@@ -7,7 +7,7 @@ install:
   - bash /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - conda config --add channels conda-forge
-  - conda install -y pandas matplotlib-base scikit-learn condastats pip
+  - conda install -y pandas matplotlib-base scikit-learn condastats pip "s3fs>=0.3"
   - pip install pypistats
 
 script:
