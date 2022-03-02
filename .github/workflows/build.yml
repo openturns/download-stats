@@ -1,0 +1,32 @@
+name: Build
+on: [push]
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniforge-version: latest
+      - name: Build
+        shell: bash -l {0}
+        run: |
+          conda install pandas matplotlib-base scikit-learn condastats pip "s3fs>=0.3"
+          pip install pypistats
+          wget https://raw.githubusercontent.com/openturns/openturns.github.io/master/openturns/stats/openturns-conda-monthly.csv
+          wget https://raw.githubusercontent.com/openturns/openturns.github.io/master/openturns/stats/openturns-pypi-monthly-with.csv
+          wget https://raw.githubusercontent.com/openturns/openturns.github.io/master/openturns/stats/openturns-pypi-monthly-without.csv
+          python generate.py
+      - name: Upload
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: |
+          git clone --depth 1 https://${{ secrets.GH_TOKEN }}@github.com/openturns/openturns.github.io.git /tmp/io
+          mkdir -p /tmp/io/openturns/stats
+          cp -rv index.html *.svg index_files/ *.csv /io/openturns/stats
+          cd /tmp/io
+          touch .nojekyll
+          git config user.email "support@gh.com"
+          git config user.name "GitHub Actions"
+          git add -A .
+          git commit -a -m "GitHub Actions build ${GITHUB_REPOSITORY} ${GITHUB_RUN_ID}"
+          git push --quiet origin master > /dev/null 2>&1
