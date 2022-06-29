@@ -5,3 +5,7 @@ Download statistics
 ===================
 
 http://openturns.github.io/openturns/stats
+
+see also
+
+https://pypistats.org/packages/openturns
